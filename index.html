@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Reach Mark Agency — Full stack digital solutions for real estate, bakeries, coaching centres and more. Mark Your Territory Online."/>
+  <meta name="keywords" content="web development, landing page, full stack, real estate website, bakery website, coaching centre website, Delhi, India"/>
+  <meta name="author" content="Reach Mark Agency"/>
+  <meta property="og:title" content="Reach Mark Agency"/>
+  <meta property="og:description" content="Mark Your Territory Online. Full-stack digital solutions for ambitious businesses."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://reachmarkagency.github.io"/>
+  <title>Reach Mark Agency — Mark Your Territory Online</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="reachmark-styles.css"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/919717019785" target="_blank" class="wa-float" aria-label="Chat on WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white">
+    <path d="M16 0C7.163 0 0 7.163 0 16c0 2.822.737 5.469 2.027 7.773L0 32l8.469-2.004A15.938 15.938 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.267 13.267 0 01-6.761-1.847l-.485-.287-5.027 1.189 1.215-4.899-.317-.504A13.236 13.236 0 012.667 16C2.667 8.637 8.637 2.667 16 2.667S29.333 8.637 29.333 16 23.363 29.333 16 29.333zm7.27-9.878c-.398-.199-2.354-1.162-2.72-1.294-.365-.133-.631-.199-.897.199-.265.398-1.029 1.294-1.261 1.56-.232.265-.465.298-.863.1-.398-.199-1.681-.62-3.203-1.977-1.184-1.057-1.983-2.363-2.215-2.761-.232-.398-.025-.613.174-.811.179-.178.398-.465.597-.697.199-.232.265-.398.398-.664.133-.265.066-.497-.033-.697-.1-.199-.897-2.162-1.229-2.96-.324-.776-.653-.671-.897-.683-.232-.011-.497-.013-.763-.013-.265 0-.697.1-.1063.497-.365.398-1.396 1.362-1.396 3.322s1.429 3.854 1.628 4.12c.199.265 2.812 4.294 6.814 6.022.952.411 1.695.657 2.274.841.955.304 1.824.261 2.511.158.766-.114 2.354-.963 2.686-1.893.332-.93.332-1.727.232-1.893-.099-.166-.365-.265-.763-.464z"/>
+  </svg>
+  <span class="wa-tooltip">Chat with us</span>
+</a>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal" id="modalBox">
+
+    <div class="modal-header">
+      <h2>Start Your <em>Project</em></h2>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- Steps -->
+      <div class="steps" id="stepsBar">
+        <div class="step active" id="step-ind-1"><div class="step-num">1</div>Details</div>
+        <div class="step-line"></div>
+        <div class="step" id="step-ind-2"><div class="step-num">2</div>Payment</div>
+        <div class="step-line"></div>
+        <div class="step" id="step-ind-3"><div class="step-num">3</div>Confirm</div>
+      </div>
+
+      <!-- STEP 1: Details -->
+      <div class="step-panel active" id="panel-1">
+        <div class="order-summary">
+          <div class="order-summary-label">Order Summary</div>
+          <div class="order-row"><span class="key">Service</span><span class="val" id="summaryService">—</span></div>
+          <div class="order-row"><span class="key">Tier</span><span class="val" id="summaryTier">—</span></div>
+          <div class="order-row"><span class="key">Delivery</span><span class="val" id="summaryDelivery">—</span></div>
+          <div class="order-total"><span class="key">Total</span><span class="val" id="summaryPrice">—</span></div>
+        </div>
+
+        <div class="checkout-grid">
+          <div class="checkout-field">
+            <label>Full Name</label>
+            <input type="text" id="clientName" placeholder="Your name"/>
+          </div>
+          <div class="checkout-field">
+            <label>Phone / WhatsApp</label>
+            <input type="tel" id="clientPhone" placeholder="+91 XXXXX XXXXX"/>
+          </div>
+        </div>
+        <div class="checkout-field">
+          <label>Email Address</label>
+          <input type="email" id="clientEmail" placeholder="you@example.com"/>
+        </div>
+        <div class="checkout-field">
+          <label>Business Name</label>
+          <input type="text" id="clientBusiness" placeholder="Your business / brand name"/>
+        </div>
+        <div class="checkout-field">
+          <label>Project Brief</label>
+          <textarea id="clientBrief" placeholder="Tell us what you need — goals, timeline, any references..." style="height:90px;resize:none;padding:14px 12px;"></textarea>
+        </div>
+
+        <button class="confirm-btn" onclick="goToStep(2)"><span>Continue to Payment →</span></button>
+      </div>
+
+      <!-- STEP 2: Payment -->
+      <div class="step-panel" id="panel-2">
+        <button class="back-btn" onclick="goToStep(1)">← Back</button>
+
+        <div class="order-summary" style="margin-bottom:28px;">
+          <div class="order-summary-label">Order Summary</div>
+          <div class="order-row"><span class="key">Service</span><span class="val" id="summaryService2">—</span></div>
+          <div class="order-total"><span class="key">Total Due</span><span class="val" id="summaryPrice2">—</span></div>
+        </div>
+
+        <div class="checkout-field" style="margin-bottom:20px;">
+          <label>Select Payment Method</label>
+        </div>
+        <div class="payment-methods">
+          <div class="pay-method active" onclick="selectPayment(this,'upi')">
+            <div class="pay-method-icon">📱</div>
+            <div class="pay-method-name">UPI</div>
+          </div>
+          <div class="pay-method" onclick="selectPayment(this,'bank')">
+            <div class="pay-method-icon">🏦</div>
+            <div class="pay-method-name">Bank Transfer</div>
+          </div>
+          <div class="pay-method" onclick="selectPayment(this,'whatsapp')">
+            <div class="pay-method-icon">💬</div>
+            <div class="pay-method-name">Pay via WhatsApp</div>
+          </div>
+        </div>
+
+        <!-- UPI Details -->
+        <div class="upi-field" id="upiDetails">
+          <p>Send payment to our UPI ID and share the screenshot on WhatsApp to confirm your booking.</p>
+          <div class="upi-id">reachmark@upi</div>
+          <div class="upi-qr-hint">or scan QR on WhatsApp · +91 97170 19785</div>
+        </div>
+
+        <!-- Bank Details -->
+        <div class="upi-field" id="bankDetails" style="display:none;">
+          <p>Transfer to our bank account and share the transaction ID to confirm your booking.</p>
+          <div style="font-size:12px;color:var(--white);line-height:2;">
+            Account Name: <span style="color:var(--orange)">Reach Mark Agency</span><br/>
+            Account No: <span style="color:var(--orange)">XXXXXXXXXXXX</span><br/>
+            IFSC: <span style="color:var(--orange)">XXXXXXXX</span><br/>
+            Bank: <span style="color:var(--orange)">HDFC Bank</span>
+          </div>
+        </div>
+
+        <!-- WhatsApp Details -->
+        <div class="upi-field" id="waDetails" style="display:none;">
+          <p>Click below to open a WhatsApp chat with us. We'll send you the payment link and confirm your project details directly.</p>
+          <a href="https://wa.me/919717019785" target="_blank" class="success-whatsapp" style="margin-top:8px;display:inline-flex;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Chat on WhatsApp
+          </a>
+        </div>
+
+        <button class="confirm-btn" onclick="goToStep(3)"><span>Confirm Booking →</span></button>
+      </div>
+
+      <!-- STEP 3: Success -->
+      <div class="step-panel" id="panel-3">
+        <div class="success-screen">
+          <div class="success-icon">🎉</div>
+          <h3>Booking <em>Confirmed!</em></h3>
+          <p>Thanks for choosing Reach Mark Agency! We've received your request and will reach out within <strong style="color:var(--orange)">24 hours</strong> to kick off your project.</p>
+          <p style="margin-bottom:24px;">For faster response, ping us directly on WhatsApp:</p>
+          <a href="https://wa.me/919717019785?text=Hi%20Reach%20Mark%2C%20I%20just%20booked%20a%20project%20on%20your%20website%21" target="_blank" class="success-whatsapp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Message Us on WhatsApp
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo"><span class="dot"></span>Reach Mark</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="hero-bg-text">REACH</div>
+  <p class="hero-eyebrow">Digital Agency · Est. 2024</p>
+  <h1 class="hero-headline">
+    Mark Your<br/>
+    <span class="ao">Territory</span><br/>
+    <span class="ay">Online.</span>
+  </h1>
+  <p class="hero-sub">Full-stack digital solutions for real estate agencies, bakeries, coaching centres, and ambitious businesses ready to dominate their space online.</p>
+  <div class="hero-cta">
+    <button class="btn-primary" onclick="scrollToServices()"><span>Start a Project</span></button>
+    <a href="#services" class="btn-ghost">Explore Services <span class="arrow">→</span></a>
+  </div>
+  <div class="hero-bottom"><span class="scroll-label">Scroll</span></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-left reveal">
+    <p class="section-label">Who We Are</p>
+    <h2>A studio obsessed with <em>digital precision.</em></h2>
+    <div class="about-stats">
+      <div class="stat-item"><div class="stat-num">50+</div><div class="stat-label">Projects Delivered</div></div>
+      <div class="stat-item"><div class="stat-num">30+</div><div class="stat-label">Happy Clients</div></div>
+      <div class="stat-item"><div class="stat-num">3+</div><div class="stat-label">Years Experience</div></div>
+      <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Client Satisfaction</div></div>
+    </div>
+  </div>
+  <div class="about-right reveal">
+    <p>Reach Mark Agency is a full-stack digital studio built for businesses that want more than a pretty website — they want results. We combine clean design, technical depth, and strategic thinking to build digital experiences that convert.</p>
+    <p>We specialise in working with real estate agencies, bakeries, coaching centres, and local businesses ready to establish a powerful presence online. Our work is precise, fast, and built to last.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <h2>What We <span>Do</span></h2>
+    <p>Pick a service below to get started — we'll take it from there.</p>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card reveal" data-service="Full Stack Development" data-price="₹1,20,000" data-tier="Pro" data-delivery="4–6 Weeks">
+      <div class="service-num">01</div>
+      <h3>Full Stack Development</h3>
+      <p>End-to-end web applications built with modern stacks. We handle everything from databases to deployment.</p>
+      <div class="service-tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Next.js</span><span class="tag">MongoDB</span></div>
+      <button class="select-service-btn" onclick="selectService(this)"><span>Select Service →</span></button>
+    </div>
+
+    <div class="service-card reveal" data-service="Frontend Development" data-price="₹35,000" data-tier="Growth" data-delivery="2–3 Weeks">
+      <div class="service-num">02</div>
+      <h3>Frontend Development</h3>
+      <p>Pixel-perfect, performance-first interfaces that delight users and reflect your brand's identity.</p>
+      <div class="service-tags"><span class="tag">UI/UX</span><span class="tag">Animations</span><span class="tag">Responsive</span></div>
+      <button class="select-service-btn" onclick="selectService(this)"><span>Select Service →</span></button>
+    </div>
+
+    <div class="service-card reveal" data-service="Backend Development" data-price="₹50,000" data-tier="Pro" data-delivery="3–4 Weeks">
+      <div class="service-num">03</div>
+      <h3>Backend Development</h3>
+      <p>Robust APIs, databases, and server architecture that power seamless digital experiences.</p>
+      <div class="service-tags"><span class="tag">REST APIs</span><span class="tag">PostgreSQL</span><span class="tag">AWS</span></div>
+      <button class="select-service-btn" onclick="selectService(this)"><span>Select Service →</span></button>
+    </div>
+
+    <div class="service-card reveal" data-service="Mobile App Development" data-price="₹80,000" data-tier="Pro" data-delivery="5–7 Weeks">
+      <div class="service-num">04</div>
+      <h3>Mobile App Development</h3>
+      <p>Cross-platform mobile apps that bring your brand into your customers' pockets.</p>
+      <div class="service-tags"><span class="tag">React Native</span><span class="tag">iOS</span><span class="tag">Android</span></div>
+      <button class="select-service-btn" onclick="selectService(this)"><span>Select Service →</span></button>
+    </div>
+
+    <div class="service-card reveal" data-service="Landing Page" data-price="₹15,000" data-tier="Starter" data-delivery="5–7 Days">
+      <div class="service-num">05</div>
+      <h3>Landing Pages</h3>
+      <p>High-converting landing pages for campaigns, launches, and lead generation — built fast.</p>
+      <div class="service-tags"><span class="tag">Real Estate</span><span class="tag">Bakeries</span><span class="tag">Coaching</span></div>
+      <button class="select-service-btn" onclick="selectService(this)"><span>Select Service →</span></button>
+    </div>
+
+    <div class="service-card reveal" data-service="Business Website" data-price="₹45,000" data-tier="Growth" data-delivery="2–3 Weeks">
+      <div class="service-num">06</div>
+      <h3>Business Websites</h3>
+      <p>Professional, SEO-ready websites tailored for your industry — built to grow with your business.</p>
+      <div class="service-tags"><span class="tag">SEO</span><span class="tag">CMS</span><span class="tag">Analytics</span></div>
+      <button class="select-service-btn" onclick="selectService(this)"><span>Select Service →</span></button>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-title reveal"><p class="label">Investment</p><h2>Transparent Pricing</h2></div>
+  <div class="pricing-grid">
+    <div class="pricing-card reveal">
+      <div class="price-label">Starter</div>
+      <div class="price-amount"><sup>₹</sup>15,000</div>
+      <div class="price-desc">One-time · Best for landing pages</div>
+      <div class="price-divider"></div>
+      <div class="price-feature">Custom Landing Page</div>
+      <div class="price-feature">Mobile Responsive</div>
+      <div class="price-feature">Contact Form Integration</div>
+      <div class="price-feature">Basic SEO Setup</div>
+      <div class="price-feature">3 Revisions · 7-day Delivery</div>
+      <button class="price-cta" onclick="scrollToServices()">Get Started</button>
+    </div>
+    <div class="pricing-card featured reveal">
+      <div class="featured-badge">Most Popular</div>
+      <div class="price-label">Growth</div>
+      <div class="price-amount"><sup>₹</sup>45,000</div>
+      <div class="price-desc">One-time · Full business website</div>
+      <div class="price-divider"></div>
+      <div class="price-feature">Multi-page Website</div>
+      <div class="price-feature">Custom Design System</div>
+      <div class="price-feature">CMS Integration</div>
+      <div class="price-feature">Advanced SEO</div>
+      <div class="price-feature">5 Revisions + Analytics</div>
+      <button class="price-cta" onclick="scrollToServices()">Get Started</button>
+    </div>
+    <div class="pricing-card reveal">
+      <div class="price-label">Pro</div>
+      <div class="price-amount"><sup>₹</sup>1,20,000</div>
+      <div class="price-desc">One-time · Full stack / App</div>
+      <div class="price-divider"></div>
+      <div class="price-feature">Full Stack Web App</div>
+      <div class="price-feature">Custom Backend & Database</div>
+      <div class="price-feature">User Authentication</div>
+      <div class="price-feature">Admin Dashboard</div>
+      <div class="price-feature">Unlimited Revisions · 3mo Support</div>
+      <button class="price-cta" onclick="scrollToServices()">Get Started</button>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-title reveal"><p class="label">Testimonials</p><h2>What Clients Say</h2></div>
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <div class="review-stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+      <p class="review-text">"Reach Mark transformed our real estate listings into a stunning, fast website. Leads doubled within the first month."</p>
+      <div class="review-author">Rahul Sharma</div><div class="review-company">Sharma Properties, Delhi</div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+      <p class="review-text">"Our bakery landing page was delivered in 5 days. The design is beautiful and our online orders have gone through the roof."</p>
+      <div class="review-author">Priya Mehta</div><div class="review-company">The Crumb Studio, Mumbai</div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+      <p class="review-text">"Professional, responsive, and the quality of their full-stack work is outstanding. Our coaching portal is a dream."</p>
+      <div class="review-author">Ankit Verma</div><div class="review-company">Verma Coaching Centre, Jaipur</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SOCIAL -->
+<section id="social">
+  <p class="label">Follow Our Work</p>
+  <div class="social-links">
+    <a href="https://instagram.com/reachmarkagency" target="_blank" class="social-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      @reachmarkagency
+    </a>
+    <a href="https://linkedin.com/company/reachmarkagency" target="_blank" class="social-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      Reach Mark Agency
+    </a>
+    <a href="https://x.com/reachmarkagency" target="_blank" class="social-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+      @reachmarkagency
+    </a>
+    <a href="https://youtube.com/@reachmarkagency" target="_blank" class="social-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+      Reach Mark
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-left reveal">
+    <h2>Let's Build<br/><em>Something.</em></h2>
+    <p>Have a project in mind? We'd love to hear about it. Drop us a message and we'll get back to you within 24 hours.</p>
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-item-label">Email</div>
+        <div class="contact-item-value"><a href="/cdn-cgi/l/email-protection#026a676e6e6d42706763616a6f6370692c6b6c"><span class="__cf_email__" data-cfemail="38505d545457784a5d595b5055594a53165156">[email&#160;protected]</span></a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">Phone</div>
+        <div class="contact-item-value"><a href="tel:+919717019785">+91 97170 19785</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">WhatsApp</div>
+        <div class="contact-item-value"><a href="https://wa.me/919717019785" target="_blank">+91 97170 19785</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">Location</div>
+        <div class="contact-item-value">Krishna Nagar, Vijay Chowk · Delhi, India</div>
+      </div>
+    </div>
+  </div>
+  <div class="contact-form reveal">
+    <div class="form-group"><label>Your Name</label><input type="text" placeholder="e.g. Rahul Sharma"/></div>
+    <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@example.com"/></div>
+    <div class="form-group">
+      <label>Service Needed</label>
+      <select>
+        <option value="">Select a service</option>
+        <option>Full Stack Development</option>
+        <option>Frontend Development</option>
+        <option>Backend Development</option>
+        <option>Mobile App</option>
+        <option>Landing Page</option>
+        <option>Business Website</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Tell Us About Your Project</label><textarea placeholder="Brief description, timeline, budget..."></textarea></div>
+    <button class="submit-btn"><span>Send Message →</span></button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><span class="dot"></span>Reach Mark</div>
+  <div class="footer-tagline">"Mark Your Territory Online."</div>
+  <div class="footer-copy">© 2025 Reach Mark Agency. All rights reserved.</div>
+</footer>
+URSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/919717019785" target="_blank" class="wa-float" aria-label="Chat on WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white">
+    <path d="M16 0C7.163 0 0 7.163 0 16c0 2.822.737 5.469 2.027 7.773L0 32l8.469-2.004A15.938 15.938 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.267 13.267 0 01-6.761-1.847l-.485-.287-5.027 1.189 1.215-4.899-.317-.504A13.236 13.236 0 012.667 16C2.667 8.637 8.637 2.667 16 2.667S29.333 8.637 29.333 16 23.363 29.333 16 29.333zm7.27-9.878c-.398-.199-2.354-1.162-2.72-1.294-.365-.133-.631-.199-.897.199-.265.398-1.029 1.294-1.261 1.56-.232.265-.465.298-.863.1-.398-.199-1.681-.62-3.203-1.977-1.184-1.057-1.983-2.363-2.215-2.761-.232-.398-.025-.613.174-.811.179-.178.398-.465.597-.697.199-.232.265-.398.398-.664.133-.265.066-.497-.033-.697-.1-.199-.897-2.162-1.229-2.96-.324-.776-.653-.671-.897-.683-.232-.011-.497-.013-.763-.013-.265 0-.697.1-.1063.497-.365.398-1.396 1.362-1.396 3.322s1.429 3.854 1.628 4.12c.199.265 2.812 4.294 6.814 6.022.952.411 1.695.657 2.274.841.955.304 1.824.261 2.511.158.766-.114 2.354-.963 2.686-1.893.332-.93.332-1.727.232-1.893-.099-.166-.365-.265-.763-.464z"/>
+  </svg>
+  <span class="wa-tooltip">Chat with us</span>
+</a>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal" id="modalBox">
+
+    <div class="modal-header">
+      <h2>Start Your <em>Project</em></h2>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- Steps -->
+      <div class="steps" id="stepsBar">
+        <div class="step active" id="step-ind-1"><div class="step-num">1</div>Details</div>
+        <div class="step-line"></div>
+        <div class="step" id="step-ind-2"><div class="step-num">2</div>Payment</div>
+        <div class="step-line"></div>
+        <div class="step" id="step-ind-3"><div class="step-num">3</div>Confirm</div>
+      </div>
+
+      <!-- STEP 1: Details -->
+      <div class="step-panel active" id="panel-1">
+        <div class="order-summary">
+          <div class="order-summary-label">Order Summary</div>
+          <div class="order-row"><span class="key">Service</span><span class="val" id="summaryService">—</span></div>
+          <div class="order-row"><span class="key">Tier</span><span class="val" id="summaryTier">—</span></div>
+          <div class="order-row"><span class="key">Delivery</span><span class="val" id="summaryDelivery">—</span></div>
+          <div class="order-total"><span class="key">Total</span><span class="val" id="summaryPrice">—</span></div>
+        </div>
+
+        <div class="checkout-grid">
+          <div class="checkout-field">
+            <label>Full Name</label>
+            <input type="text" id="clientName" placeholder="Your name"/>
+          </div>
+          <div class="checkout-field">
+            <label>Phone / WhatsApp</label>
+            <input type="tel" id="clientPhone" placeholder="+91 XXXXX XXXXX"/>
+          </div>
+        </div>
+        <div class="checkout-field">
+          <label>Email Address</label>
+          <input type="email" id="clientEmail" placeholder="you@example.com"/>
+        </div>
+        <div class="checkout-field">
+          <label>Business Name</label>
+          <input type="text" id="clientBusiness" placeholder="Your business / brand name"/>
+        </div>
+        <div class="checkout-field">
+          <label>Project Brief</label>
+          <textarea id="clientBrief" placeholder="Tell us what you need — goals, timeline, any references..." style="height:90px;resize:none;padding:14px 12px;"></textarea>
+        </div>
+
+        <button class="confirm-btn" onclick="goToStep(2)"><span>Continue to Payment →</span></button>
+      </div>
+
+      <!-- STEP 2: Payment -->
+      <div class="step-panel" id="panel-2">
+        <button class="back-btn" onclick="goToStep(1)">← Back</button>
+
+        <div class="order-summary" style="margin-bottom:28px;">
+          <div class="order-summary-label">Order Summary</div>
+          <div class="order-row"><span class="key">Service</span><span class="val" id="summaryService2">—</span></div>
+          <div class="order-total"><span class="key">Total Due</span><span class="val" id="summaryPrice2">—</span></div>
+        </div>
+
+        <div class="checkout-field" style="margin-bottom:20px;">
+          <label>Select Payment Method</label>
+        </div>
+        <div class="payment-methods">
+          <div class="pay-method active" onclick="selectPayment(this,'upi')">
+            <div class="pay-method-icon">📱</div>
+            <div class="pay-method-name">UPI</div>
+          </div>
+          <div class="pay-method" onclick="selectPayment(this,'bank')">
+            <div class="pay-method-icon">🏦</div>
+            <div class="pay-method-name">Bank Transfer</div>
+          </div>
+          <div class="pay-method" onclick="selectPayment(this,'whatsapp')">
+            <div class="pay-method-icon">💬</div>
+            <div class="pay-method-name">Pay via WhatsApp</div>
+          </div>
+        </div>
+
+        <!-- UPI Details -->
+        <div class="upi-field" id="upiDetails">
+          <p>Send payment to our UPI ID and share the screenshot on WhatsApp to confirm your booking.</p>
+          <div class="upi-id">reachmark@upi</div>
+          <div class="upi-qr-hint">or scan QR on WhatsApp · +91 97170 19785</div>
+        </div>
+
+        <!-- Bank Details -->
+        <div class="upi-field" id="bankDetails" style="display:none;">
+          <p>Transfer to our bank account and share the transaction ID to confirm your booking.</p>
+          <div style="font-size:12px;color:var(--white);line-height:2;">
+            Account Name: <span style="color:var(--orange)">Reach Mark Agency</span><br/>
+            Account No: <span style="color:var(--orange)">XXXXXXXXXXXX</span><br/>
+            IFSC: <span style="color:var(--orange)">XXXXXXXX</span><br/>
+            Bank: <span style="color:var(--orange)">HDFC Bank</span>
+          </div>
+        </div>
+
+        <!-- WhatsApp Details -->
+        <div class="upi-field" id="waDetails" style="display:none;">
+          <p>Click below to open a WhatsApp chat with us. We'll send you the payment link and confirm your project details directly.</p>
+          <a href="https://wa.me/919717019785" target="_blank" class="success-whatsapp" style="margin-top:8px;display:inline-flex;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Chat on WhatsApp
+          </a>
+        </div>
+
+        <button class="confirm-btn" onclick="goToStep(3)"><span>Confirm Booking →</span></button>
+      </div>
+
+      <!-- STEP 3: Success -->
+      <div class="step-panel" id="panel-3">
+        <div class="success-screen">
+          <div class="success-icon">🎉</div>
+          <h3>Booking <em>Confirmed!</em></h3>
+          <p>Thanks for choosing Reach Mark Agency! We've received your request and will reach out within <strong style="color:var(--orange)">24 hours</strong> to kick off your project.</p>
+          <p style="margin-bottom:24px;">For faster response, ping us directly on WhatsApp:</p>
+          <a href="https://wa.me/919717019785?text=Hi%20Reach%20Mark%2C%20I%20just%20booked%20a%20project%20on%20your%20website%21" target="_blank" class="success-whatsapp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Message Us on WhatsApp
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo"><span class="dot"></span>Reach Mark</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="hero-bg-text">REACH</div>
+  <p class="hero-eyebrow">Digital Agency · Est. 2024</p>
+  <h1 class="hero-headline">
+    Mark Your<br/>
+    <span class="ao">Territory</span><br/>
+    <span class="ay">Online.</span>
+  </h1>
+  <p class="hero-sub">Full-stack digital solutions for real estate agencies, bakeries, coaching centres, and ambitious businesses ready to dominate their space online.</p>
+  <div class="hero-cta">
+    <button class="btn-primary" onclick="scrollToServices()"><span>Start a Project</span></button>
+    <a href="#services" class="btn-ghost">Explore Services <span class="arrow">→</span></a>
+  </div>
+  <div class="hero-bottom"><span class="scroll-label">Scroll</span></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-left reveal">
+    <p class="section-label">Who We Are</p>
+    <h2>A studio obsessed with <em>digital precision.</em></h2>
+    <div class="about-stats">
+      <div class="stat-item"><div class="stat-num">50+</div><div class="stat-label">Projects Delivered</div></div>
+      <div class="stat-item"><div class="stat-num">30+</div><div class="stat-label">Happy Clients</div></div>
+      <div class="stat-item"><div class="stat-num">3+</div><div class="stat-label">Years Experience</div></div>
+      <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Client Satisfaction</div></div>
+    </div>
+  </div>
+  <div class="about-right reveal">
+    <p>Reach Mark Agency is a full-stack digital studio built for businesses that want more than a pretty website — they want results. We combine clean design, technical depth, and strategic thinking to build digital experiences that convert.</p>
+    <p>We specialise in working with real estate agencies, bakeries, coaching centres, and local businesses ready to establish a powerful presence online. Our work is precise, fast, and built to last.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <h2>What We <span>Do</span></h2>
+    <p>Pick a service below to get started — we'll take it from there.</p>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card reveal" data-service="Full Stack Development" data-price="₹1,20,000" data-tier="Pro" data-delivery="4–6 Weeks">
+      <div class="service-num">01</div>
+      <h3>Full Stack Development</h3>
+      <p>End-to-end web applications built with modern stacks. We handle everything from databases to deployment.</p>
+      <div class="service-tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Next.js</span><span class="tag">MongoDB</span></div>
+      <button class="select-service-btn" onclick="selectService(this)"><span>Select Service →</span></button>
+    </div>
+
+    <div class="service-card reveal" data-service="Frontend Development" data-price="₹35,000" data-tier="Growth" data-delivery="2–3 Weeks">
+      <div class="service-num">02</div>
+      <h3>Frontend Development</h3>
+      <p>Pixel-perfect, performance-first interfaces that delight users and reflect your brand's identity.</p>
+      <div class="service-tags"><span class="tag">UI/UX</span><span class="tag">Animations</span><span class="tag">Responsive</span></div>
+      <button class="select-service-btn" onclick="selectService(this)"><span>Select Service →</span></button>
+    </div>
+
+    <div class="service-card reveal" data-service="Backend Development" data-price="₹50,000" data-tier="Pro" data-delivery="3–4 Weeks">
+      <div class="service-num">03</div>
+      <h3>Backend Development</h3>
+      <p>Robust APIs, databases, and server architecture that power seamless digital experiences.</p>
+      <div class="service-tags"><span class="tag">REST APIs</span><span class="tag">PostgreSQL</span><span class="tag">AWS</span></div>
+      <button class="select-service-btn" onclick="selectService(this)"><span>Select Service →</span></button>
+    </div>
+
+    <div class="service-card reveal" data-service="Mobile App Development" data-price="₹80,000" data-tier="Pro" data-delivery="5–7 Weeks">
+      <div class="service-num">04</div>
+      <h3>Mobile App Development</h3>
+      <p>Cross-platform mobile apps that bring your brand into your customers' pockets.</p>
+      <div class="service-tags"><span class="tag">React Native</span><span class="tag">iOS</span><span class="tag">Android</span></div>
+      <button class="select-service-btn" onclick="selectService(this)"><span>Select Service →</span></button>
+    </div>
+
+    <div class="service-card reveal" data-service="Landing Page" data-price="₹15,000" data-tier="Starter" data-delivery="5–7 Days">
+      <div class="service-num">05</div>
+      <h3>Landing Pages</h3>
+      <p>High-converting landing pages for campaigns, launches, and lead generation — built fast.</p>
+      <div class="service-tags"><span class="tag">Real Estate</span><span class="tag">Bakeries</span><span class="tag">Coaching</span></div>
+      <button class="select-service-btn" onclick="selectService(this)"><span>Select Service →</span></button>
+    </div>
+
+    <div class="service-card reveal" data-service="Business Website" data-price="₹45,000" data-tier="Growth" data-delivery="2–3 Weeks">
+      <div class="service-num">06</div>
+      <h3>Business Websites</h3>
+      <p>Professional, SEO-ready websites tailored for your industry — built to grow with your business.</p>
+      <div class="service-tags"><span class="tag">SEO</span><span class="tag">CMS</span><span class="tag">Analytics</span></div>
+      <button class="select-service-btn" onclick="selectService(this)"><span>Select Service →</span></button>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-title reveal"><p class="label">Investment</p><h2>Transparent Pricing</h2></div>
+  <div class="pricing-grid">
+    <div class="pricing-card reveal">
+      <div class="price-label">Starter</div>
+      <div class="price-amount"><sup>₹</sup>15,000</div>
+      <div class="price-desc">One-time · Best for landing pages</div>
+      <div class="price-divider"></div>
+      <div class="price-feature">Custom Landing Page</div>
+      <div class="price-feature">Mobile Responsive</div>
+      <div class="price-feature">Contact Form Integration</div>
+      <div class="price-feature">Basic SEO Setup</div>
+      <div class="price-feature">3 Revisions · 7-day Delivery</div>
+      <button class="price-cta" onclick="scrollToServices()">Get Started</button>
+    </div>
+    <div class="pricing-card featured reveal">
+      <div class="featured-badge">Most Popular</div>
+      <div class="price-label">Growth</div>
+      <div class="price-amount"><sup>₹</sup>45,000</div>
+      <div class="price-desc">One-time · Full business website</div>
+      <div class="price-divider"></div>
+      <div class="price-feature">Multi-page Website</div>
+      <div class="price-feature">Custom Design System</div>
+      <div class="price-feature">CMS Integration</div>
+      <div class="price-feature">Advanced SEO</div>
+      <div class="price-feature">5 Revisions + Analytics</div>
+      <button class="price-cta" onclick="scrollToServices()">Get Started</button>
+    </div>
+    <div class="pricing-card reveal">
+      <div class="price-label">Pro</div>
+      <div class="price-amount"><sup>₹</sup>1,20,000</div>
+      <div class="price-desc">One-time · Full stack / App</div>
+      <div class="price-divider"></div>
+      <div class="price-feature">Full Stack Web App</div>
+      <div class="price-feature">Custom Backend & Database</div>
+      <div class="price-feature">User Authentication</div>
+      <div class="price-feature">Admin Dashboard</div>
+      <div class="price-feature">Unlimited Revisions · 3mo Support</div>
+      <button class="price-cta" onclick="scrollToServices()">Get Started</button>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-title reveal"><p class="label">Testimonials</p><h2>What Clients Say</h2></div>
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <div class="review-stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+      <p class="review-text">"Reach Mark transformed our real estate listings into a stunning, fast website. Leads doubled within the first month."</p>
+      <div class="review-author">Rahul Sharma</div><div class="review-company">Sharma Properties, Delhi</div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+      <p class="review-text">"Our bakery landing page was delivered in 5 days. The design is beautiful and our online orders have gone through the roof."</p>
+      <div class="review-author">Priya Mehta</div><div class="review-company">The Crumb Studio, Mumbai</div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+      <p class="review-text">"Professional, responsive, and the quality of their full-stack work is outstanding. Our coaching portal is a dream."</p>
+      <div class="review-author">Ankit Verma</div><div class="review-company">Verma Coaching Centre, Jaipur</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SOCIAL -->
+<section id="social">
+  <p class="label">Follow Our Work</p>
+  <div class="social-links">
+    <a href="https://instagram.com/reachmarkagency" target="_blank" class="social-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      @reachmarkagency
+    </a>
+    <a href="https://linkedin.com/company/reachmarkagency" target="_blank" class="social-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      Reach Mark Agency
+    </a>
+    <a href="https://x.com/reachmarkagency" target="_blank" class="social-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+      @reachmarkagency
+    </a>
+    <a href="https://youtube.com/@reachmarkagency" target="_blank" class="social-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+      Reach Mark
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-left reveal">
+    <h2>Let's Build<br/><em>Something.</em></h2>
+    <p>Have a project in mind? We'd love to hear about it. Drop us a message and we'll get back to you within 24 hours.</p>
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-item-label">Email</div>
+        <div class="contact-item-value"><a href="/cdn-cgi/l/email-protection#026a676e6e6d42706763616a6f6370692c6b6c"><span class="__cf_email__" data-cfemail="38505d545457784a5d595b5055594a53165156">[email&#160;protected]</span></a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">Phone</div>
+        <div class="contact-item-value"><a href="tel:+919717019785">+91 97170 19785</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">WhatsApp</div>
+        <div class="contact-item-value"><a href="https://wa.me/919717019785" target="_blank">+91 97170 19785</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">Location</div>
+        <div class="contact-item-value">Krishna Nagar, Vijay Chowk · Delhi, India</div>
+      </div>
+    </div>
+  </div>
+  <div class="contact-form reveal">
+    <div class="form-group"><label>Your Name</label><input type="text" placeholder="e.g. Rahul Sharma"/></div>
+    <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@example.com"/></div>
+    <div class="form-group">
+      <label>Service Needed</label>
+      <select>
+        <option value="">Select a service</option>
+        <option>Full Stack Development</option>
+        <option>Frontend Development</option>
+        <option>Backend Development</option>
+        <option>Mobile App</option>
+        <option>Landing Page</option>
+        <option>Business Website</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Tell Us About Your Project</label><textarea placeholder="Brief description, timeline, budget..."></textarea></div>
+    <button class="submit-btn"><span>Send Message →</span></button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><span class="dot"></span>Reach Mark</div>
+  <div class="footer-tagline">"Mark Your Territory Online."</div>
+  <div class="footer-copy">© 2025 Reach Mark Agency. All rights reserved.</div>
+</footer>
+
+<script>
+  /* ── CURSOR ── */
+  const cursor = document.getElementById('cursor');
+  const ring   = document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove', e => {
+    mx=e.clientX; my=e.clientY;
+    cursor.style.left=mx-5+'px'; cursor.style.top=my-5+'px';
+  });
+  (function animRing(){ rx+=(mx-rx)*.12; ry+=(my-ry)*.12; ring.style.left=rx-19+'px'; ring.style.top=ry-19+'px'; requestAnimationFrame(animRing); })();
+
+  /* ── SCROLL REVEAL ── */
+  const reveals = document.querySelectorAll('.reveal');
+  // Force all visible immediately as fallback (fixes blank page issue)
+  reveals.forEach(el => el.classList.add('visible'));
+  // Also observe for staggered effect on scroll
+  if('IntersectionObserver' in window) {
+    reveals.forEach(el => el.classList.remove('visible'));
+    const revObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => revObs.observe(el));
+    // Nuclear fallback: force all visible after 2s no matter what
+    setTimeout(() => reveals.forEach(el => el.classList.add('visible')), 2000);
+  }
+
+  /* ── SCROLL TO SERVICES ── */
+  function scrollToServices(e) {
+    if(e) e.preventDefault();
+    document.getElementById('services').scrollIntoView({ behavior:'smooth' });
+  }
+
+  /* ── SERVICE SELECTION ── */
+  let selectedService = null;
+
+  function selectService(btn) {
+    // Clear previously selected
+    document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
+    document.querySelectorAll('.select-service-btn span').forEach(s => s.textContent = 'Select Service →');
+
+    const card = btn.closest('.service-card');
+    card.classList.add('selected');
+    btn.querySelector('span').textContent = '✓ Selected';
+
+    selectedService = {
+      service:  card.dataset.service,
+      price:    card.dataset.price,
+      tier:     card.dataset.tier,
+      delivery: card.dataset.delivery
+    };
+
+    // Small delay then open modal
+    setTimeout(() => openModal(), 300);
+  }
+
+  /* ── MODAL ── */
+  const overlay = document.getElementById('checkoutModal');
+
+  function openModal() {
+    if (!selectedService) return;
+
+    // Populate summaries
+    document.getElementById('summaryService').textContent  = selectedService.service;
+    document.getElementById('summaryService2').textContent = selectedService.service;
+    document.getElementById('summaryTier').textContent     = selectedService.tier;
+    document.getElementById('summaryDelivery').textContent = selectedService.delivery;
+    document.getElementById('summaryPrice').textContent    = selectedService.price;
+    document.getElementById('summaryPrice2').textContent   = selectedService.price;
+
+    goToStep(1);
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if(e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+  /* ── STEPS ── */
+  function goToStep(n) {
+    [1,2,3].forEach(i => {
+      document.getElementById('panel-'+i).classList.toggle('active', i===n);
+      const ind = document.getElementById('step-ind-'+i);
+      ind.classList.remove('active','done');
+      if(i === n) ind.classList.add('active');
+      if(i < n)   ind.classList.add('done');
+    });
+    document.getElementById('modalBox').scrollTop = 0;
+  }
+
+  /* ── PAYMENT METHOD ── */
+  function selectPayment(el, type) {
+    document.querySelectorAll('.pay-method').forEach(m => m.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('upiDetails').style.display  = type==='upi'      ? 'block' : 'none';
+    document.getElementById('bankDetails').style.display = type==='bank'     ? 'block' : 'none';
+    document.getElementById('waDetails').style.display   = type==='whatsapp' ? 'block' : 'none';
+    if(type==='wh
+
+  <script src="reachmark-main.js"></script>
+</body>
+</html>
